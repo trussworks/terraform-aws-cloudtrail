@@ -18,6 +18,9 @@
 # The AWS region currently being used.
 data "aws_region" "current" {}
 
+# The AWS account id
+data "aws_caller_identity" "current" {}
+
 #
 # CloudTrail - CloudWatch
 #
@@ -80,7 +83,8 @@ resource "aws_iam_policy_attachment" "main" {
 
 resource "aws_cloudtrail" "main" {
   depends_on = [
-    "module.logs",
+    "aws_cloudwatch_log_group.cloudtrail",
+    "aws_iam_role.cloudtrail_cloudwatch_role",
   ]
 
   cloud_watch_logs_group_arn = "${aws_cloudwatch_log_group.cloudtrail.arn}"
