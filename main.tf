@@ -82,11 +82,6 @@ resource "aws_iam_policy_attachment" "main" {
 #
 
 resource "aws_cloudtrail" "main" {
-  depends_on = [
-    "aws_cloudwatch_log_group.cloudtrail",
-    "aws_iam_role.cloudtrail_cloudwatch_role",
-  ]
-
   cloud_watch_logs_group_arn = "${aws_cloudwatch_log_group.cloudtrail.arn}"
   cloud_watch_logs_role_arn  = "${aws_iam_role.cloudtrail_cloudwatch_role.arn}"
 
