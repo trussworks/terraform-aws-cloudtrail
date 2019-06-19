@@ -1,19 +1,4 @@
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-# Terraform AWS CloudTrail
-
-This module creates AWS CloudTrail and configures it so that logs go to cloudwatch.
-
-## Usage
-
-```hcl
-module "aws_cloudtrail" {
-    source             = "trussworks/cloudtrail/aws"
-    s3_bucket_name     = "my-company-cloudtrail-logs"
-    log_retention_days = 90
-}
-```
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
