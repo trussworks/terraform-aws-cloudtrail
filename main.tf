@@ -89,6 +89,10 @@ resource "aws_cloudtrail" "main" {
   s3_key_prefix  = "cloudtrail"
   s3_bucket_name = "${var.s3_bucket_name}"
 
+  # Note that organization trails can *only* be created in organization
+  # master accounts; this will fail if run in a non-master account.
+  is_organization_trail = "${var.org_trail}"
+
   # use a single s3 bucket for all aws regions
   is_multi_region_trail = true
 
