@@ -13,3 +13,4 @@ variable "org_trail" {
   description = "Whether or not this is an organization trail. Only valid in master account."
   default     = "false"
   type        = "string"
+}
