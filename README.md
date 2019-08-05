@@ -18,6 +18,7 @@ module "aws_cloudtrail" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| cloudwatch\_log\_group\_name | The name of the CloudWatch Log Group that receives CloudTrail events. | string | `"cloudtrail-events"` | no |
 | log\_retention\_days | Number of days to keep AWS logs around in specific log group. | string | `"90"` | no |
 | org\_trail | Whether or not this is an organization trail. Only valid in master account. | string | `"false"` | no |
 | s3\_bucket\_name | The name of the AWS S3 bucket. | string | n/a | yes |
