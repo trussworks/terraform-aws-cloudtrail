@@ -98,4 +98,8 @@ resource "aws_cloudtrail" "main" {
 
   # enable log file validation to detect tampering
   enable_log_file_validation = true
+
+  tags = {
+    Automation = "Terraform"
+  }
 }
