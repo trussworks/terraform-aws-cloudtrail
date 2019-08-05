@@ -47,7 +47,7 @@ resource "aws_iam_role" "cloudtrail_cloudwatch_role" {
 
 # This CloudWatch Group is used for storing CloudTrail logs.
 resource "aws_cloudwatch_log_group" "cloudtrail" {
-  name              = "cloudtrail-events"
+  name              = "${var.cloudwatch_log_group_name}"
   retention_in_days = "${var.log_retention_days}"
 }
 
@@ -62,7 +62,7 @@ data "aws_iam_policy_document" "cloudtrail_cloudwatch_logs" {
       "logs:PutLogEvents",
     ]
 
-    resources = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:cloudtrail-events:*"]
+    resources = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:${var.cloudwatch_log_group_name}:*"]
   }
 }
 

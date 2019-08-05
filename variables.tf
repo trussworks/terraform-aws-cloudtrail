@@ -1,3 +1,9 @@
+variable "cloudwatch_log_group_name" {
+  description = "The name of the CloudWatch Log Group that receives CloudTrail events."
+  default     = "cloudtrail-events"
+  type        = "string"
+}
+
 variable "log_retention_days" {
   description = "Number of days to keep AWS logs around in specific log group."
   default     = 90
