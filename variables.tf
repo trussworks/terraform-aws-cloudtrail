@@ -20,3 +20,15 @@ variable "org_trail" {
   default     = "false"
   type        = "string"
 }
+
+variable "encrypt_cloudtrail" {
+  description = "Whether or not to use a custom KMS key to encrypt CloudTrail logs."
+  default     = "false"
+  type        = "string"
+}
+
+variable "key_deletion_window_in_days" {
+  description = "Duration in days after which the key is deleted after destruction of the resource, must be 7-30 days.  Default 30 days."
+  default     = 30
+  type        = "string"
+}
