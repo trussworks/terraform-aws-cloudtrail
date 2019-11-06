@@ -9,7 +9,7 @@ module "aws_cloudtrail" {
 
 module "logs" {
   source         = "trussworks/logs/aws"
-  version        = "4.0.0"
+  version        = "~> 4"
   s3_bucket_name = var.logs_bucket
   region         = var.region
 }
