@@ -5,7 +5,8 @@ module "aws_cloudtrail" {
 
 module "logs" {
   source         = "trussworks/logs/aws"
-  version        = "~> 4"
+  version        = "~> 5"
   s3_bucket_name = var.logs_bucket
   region         = var.region
+  force_destroy  = true
 }

@@ -1,26 +1,3 @@
-/**
- *
- * # Terraform AWS CloudTrail
- *
- * This module creates AWS CloudTrail and configures it so that logs go to cloudwatch.
- *
- * ## Terraform Versions
- *
- * Terraform 0.12. Pin module version to `~> 2.0`. Submit pull-requests to `master` branch.
- *
- * Terraform 0.11. Pin module version to `~> 1.0`. Submit pull-requests to `terraform011` branch.
- *
- * ## Usage
- *
- * ```hcl
- * module "aws_cloudtrail" {
- *     source             = "trussworks/cloudtrail/aws"
- *     s3_bucket_name     = "my-company-cloudtrail-logs"
- *     log_retention_days = 90
- * }
- * ```
- */
-
 # The AWS region currently being used.
 data "aws_region" "current" {
 }
