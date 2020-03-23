@@ -6,6 +6,9 @@ data "aws_region" "current" {
 data "aws_caller_identity" "current" {
 }
 
+# The AWS partition (commercial or govcloud)
+data "aws_partition" "current" {}
+
 #
 # CloudTrail - CloudWatch
 #
@@ -52,7 +55,7 @@ data "aws_iam_policy_document" "cloudtrail_cloudwatch_logs" {
       "logs:PutLogEvents",
     ]
 
-    resources = ["arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:${var.cloudwatch_log_group_name}:*"]
+    resources = ["arn:${data.aws_partition.current.partition}:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:${var.cloudwatch_log_group_name}:*"]
   }
 }
 
@@ -83,7 +86,7 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     principals {
       type = "AWS"
 
-      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
+      identifiers = ["arn:${data.aws_partition.current.partition}:iam::${data.aws_caller_identity.current.account_id}:root"]
     }
 
     resources = ["*"]
@@ -104,7 +107,7 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     condition {
       test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
-      values   = ["arn:aws:cloudtrail:*:${data.aws_caller_identity.current.account_id}:trail/*"]
+      values   = ["arn:${data.aws_partition.current.partition}:cloudtrail:*:${data.aws_caller_identity.current.account_id}:trail/*"]
     }
   }
 
@@ -146,7 +149,7 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     condition {
       test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
-      values   = ["arn:aws:cloudtrail:*:${data.aws_caller_identity.current.account_id}:trail/*"]
+      values   = ["arn:${data.aws_partition.current.partition}:cloudtrail:*:${data.aws_caller_identity.current.account_id}:trail/*"]
     }
   }
 
@@ -198,7 +201,7 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     condition {
       test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
-      values   = ["arn:aws:cloudtrail:*:${data.aws_caller_identity.current.account_id}:trail/*"]
+      values   = ["arn:${data.aws_partition.current.partition}:cloudtrail:*:${data.aws_caller_identity.current.account_id}:trail/*"]
     }
 
     resources = ["*"]
@@ -228,7 +231,7 @@ resource "aws_kms_alias" "cloudtrail" {
 #
 
 resource "aws_cloudtrail" "main" {
-  name = "cloudtrail"
+  name = var.trail_name
 
   # Send logs to CloudWatch Logs
   cloud_watch_logs_group_arn = aws_cloudwatch_log_group.cloudtrail.arn

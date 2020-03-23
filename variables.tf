@@ -33,3 +33,8 @@ variable "key_deletion_window_in_days" {
   type        = string
 }
 
+variable "trail_name" {
+  description = "Name for the Cloudtrail"
+  default     = "cloudtrail"
+  type        = string
+}
