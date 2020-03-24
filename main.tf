@@ -209,7 +209,8 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
 }
 
 resource "aws_kms_key" "cloudtrail" {
-  count                   = var.encrypt_cloudtrail ? 1 : 0
+  count = var.encrypt_cloudtrail ? 1 : 0
+
   description             = "A KMS key used to encrypt CloudTrail log files stored in S3."
   deletion_window_in_days = var.key_deletion_window_in_days
   enable_key_rotation     = "true"
@@ -221,8 +222,9 @@ resource "aws_kms_key" "cloudtrail" {
 }
 
 resource "aws_kms_alias" "cloudtrail" {
-  count         = var.encrypt_cloudtrail ? 1 : 0
-  name          = "alias/cloudtrail"
+  count = var.encrypt_cloudtrail ? 1 : 0
+
+  name          = "alias/${var.trail_name}"
   target_key_id = aws_kms_key.cloudtrail[0].key_id
 }
 
@@ -238,7 +240,7 @@ resource "aws_cloudtrail" "main" {
   cloud_watch_logs_role_arn  = aws_iam_role.cloudtrail_cloudwatch_role.arn
 
   # Send logs to S3
-  s3_key_prefix  = "cloudtrail"
+  s3_key_prefix  = var.s3_key_prefix
   s3_bucket_name = var.s3_bucket_name
 
   # Note that organization trails can *only* be created in organization

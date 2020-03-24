@@ -38,3 +38,9 @@ variable "trail_name" {
   default     = "cloudtrail"
   type        = string
 }
+
+variable "s3_key_prefix" {
+  description = "S3 key prefix for CloudTrail logs"
+  default     = "cloudtrail"
+  type        = string
+}
