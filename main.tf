@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "cloudtrail_assume_role" {
 
 # This role is used by CloudTrail to send logs to CloudWatch.
 resource "aws_iam_role" "cloudtrail_cloudwatch_role" {
-  name               = "${var.trail_name}-cloudwatch-logs-role"
+  name               = "cloudtrail-cloudwatch-logs-role"
   assume_role_policy = data.aws_iam_policy_document.cloudtrail_assume_role.json
 }
 
@@ -60,12 +60,12 @@ data "aws_iam_policy_document" "cloudtrail_cloudwatch_logs" {
 }
 
 resource "aws_iam_policy" "cloudtrail_cloudwatch_logs" {
-  name   = "${var.trail_name}-cloudwatch-logs-policy"
+  name   = "cloudtrail-cloudwatch-logs-policy"
   policy = data.aws_iam_policy_document.cloudtrail_cloudwatch_logs.json
 }
 
 resource "aws_iam_policy_attachment" "main" {
-  name       = "${var.trail_name}-cloudwatch-logs-policy-attachment"
+  name       = "cloudtrail-cloudwatch-logs-policy-attachment"
   policy_arn = aws_iam_policy.cloudtrail_cloudwatch_logs.arn
   roles      = [aws_iam_role.cloudtrail_cloudwatch_role.name]
 }

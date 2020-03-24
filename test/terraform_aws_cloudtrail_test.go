@@ -41,8 +41,6 @@ func IsLogging(t *testing.T, region string, trailName string) (bool, error) {
 }
 
 func TestTerraformAwsCloudtrail(t *testing.T) {
-	t.Parallel()
-
 	testName := fmt.Sprintf("terratest-aws-cloudtrail-%s", strings.ToLower(random.UniqueId()))
 	tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/simple")
 
@@ -72,8 +70,6 @@ func TestTerraformAwsCloudtrail(t *testing.T) {
 }
 
 func TestTerraformAwsCloudtrailEncryption(t *testing.T) {
-	t.Parallel()
-
 	testName := fmt.Sprintf("terratest-aws-cloudtrail-%s", strings.ToLower(random.UniqueId()))
 	tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/simple")
 
