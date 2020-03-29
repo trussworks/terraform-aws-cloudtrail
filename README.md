@@ -31,6 +31,7 @@ module "aws_cloudtrail" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
 | cloudwatch\_log\_group\_name | The name of the CloudWatch Log Group that receives CloudTrail events. | `string` | `"cloudtrail-events"` | no |
+| enabled | Enables logging for the trail. Defaults to true. Setting this to false will pause logging. | `bool` | `true` | no |
 | encrypt\_cloudtrail | Whether or not to use a custom KMS key to encrypt CloudTrail logs. | `string` | `"false"` | no |
 | key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be 7-30 days.  Default 30 days. | `string` | `30` | no |
 | log\_retention\_days | Number of days to keep AWS logs around in specific log group. | `string` | `90` | no |
