@@ -48,7 +48,7 @@ variable "s3_key_prefix" {
 variable "cloudwatch_log_group_retention_in_days" {
   description = "Number of days to keep the CloudTrail logs in the CloudWatch log group."
   default     = 90
-  type        = string
+  type        = number
 }
 
 variable "cloudwatch_log_group_kms_key_arn" {
