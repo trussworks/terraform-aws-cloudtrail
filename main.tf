@@ -255,6 +255,9 @@ resource "aws_cloudtrail" "main" {
 
   kms_key_id = var.encrypt_cloudtrail ? aws_kms_key.cloudtrail[0].arn : null
 
+  # Enables logging for the trail. Defaults to true. Setting this to false will pause logging.
+  enable_logging = var.enabled
+
   tags = {
     Automation = "Terraform"
   }
@@ -264,4 +267,3 @@ resource "aws_cloudtrail" "main" {
     aws_kms_alias.cloudtrail,
   ]
 }
-

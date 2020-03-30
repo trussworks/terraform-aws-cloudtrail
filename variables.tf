@@ -4,6 +4,12 @@ variable "cloudwatch_log_group_name" {
   type        = string
 }
 
+variable "enabled" {
+  description = "Enables logging for the trail. Defaults to true. Setting this to false will pause logging."
+  default     = true
+  type        = bool
+}
+
 variable "log_retention_days" {
   description = "Number of days to keep AWS logs around in specific log group."
   default     = 90
