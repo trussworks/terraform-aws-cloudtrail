@@ -10,12 +10,6 @@ variable "enabled" {
   type        = bool
 }
 
-variable "log_retention_days" {
-  description = "Number of days to keep AWS logs around in specific log group."
-  default     = 90
-  type        = string
-}
-
 variable "s3_bucket_name" {
   description = "The name of the AWS S3 bucket."
   type        = string
@@ -49,4 +43,16 @@ variable "s3_key_prefix" {
   description = "S3 key prefix for CloudTrail logs"
   default     = "cloudtrail"
   type        = string
+}
+
+variable "cloudwatch_log_group_retention_in_days" {
+  description = "Number of days to keep the CloudTrail logs in the CloudWatch log group."
+  default     = 90
+  type        = string
+}
+
+variable "cloudwatch_log_group_kms_key_arn" {
+  description = "The ARN of the KMS key used to encrypt the CloudWatch log group storing CloudTrail logs.  If blank, then logs are unencrypted."
+  type        = string
+  default     = ""
 }

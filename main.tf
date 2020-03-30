@@ -37,7 +37,8 @@ resource "aws_iam_role" "cloudtrail_cloudwatch_role" {
 # This CloudWatch Group is used for storing CloudTrail logs.
 resource "aws_cloudwatch_log_group" "cloudtrail" {
   name              = var.cloudwatch_log_group_name
-  retention_in_days = var.log_retention_days
+  retention_in_days = var.cloudwatch_log_group_retention_in_days
+  kms_key_id        = length(var.cloudwatch_log_group_kms_key_arn) > 0 ? var.cloudwatch_log_group_kms_key_arn : null
 
   tags = {
     Automation = "Terraform"
