@@ -2,7 +2,7 @@ version: 2
 jobs:
   terratest:
     docker:
-      - image: trussworks/circleci-docker-primary:9aeb08028f7d8413a463f4642526ab6a6e18832b
+      - image: trussworks/circleci-docker-primary:997cd405a1251d78ef7f58cbe1b7be066098a62f
     steps:
       - checkout
       - restore_cache:
