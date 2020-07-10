@@ -38,6 +38,7 @@ resource "aws_iam_role" "cloudtrail_cloudwatch_role" {
 resource "aws_cloudwatch_log_group" "cloudtrail" {
   name              = var.cloudwatch_log_group_name
   retention_in_days = var.log_retention_days
+  kms_key_id        = var.encrypt_cloudtrail ? aws_kms_key.cloudtrail[0].arn : null
 
   tags = {
     Automation = "Terraform"
@@ -206,6 +207,26 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
 
     resources = ["*"]
   }
+
+  statement {
+    sid    = "Allow logs KMS access"
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["logs.${data.aws_region.current.name}.amazonaws.com"]
+    }
+
+    actions = [
+      "kms:Encrypt*",
+      "kms:Decrypt*",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Describe*"
+    ]
+    resources = ["*"]
+  }
+
 }
 
 resource "aws_kms_key" "cloudtrail" {
