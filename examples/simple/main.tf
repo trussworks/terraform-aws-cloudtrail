@@ -7,8 +7,6 @@ module "aws_cloudtrail" {
 
   s3_bucket_name = module.logs.aws_logs_bucket
   s3_key_prefix  = var.s3_key_prefix
-
-  encrypt_cloudtrail = var.encrypt_cloudtrail
 }
 
 module "logs" {

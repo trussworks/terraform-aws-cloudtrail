@@ -40,35 +40,6 @@ func IsLogging(t *testing.T, region string, trailName string) (bool, error) {
 	return *trailStatus.IsLogging, nil
 }
 
-func TestTerraformAwsCloudtrail(t *testing.T) {
-	testName := fmt.Sprintf("terratest-aws-cloudtrail-%s", strings.ToLower(random.UniqueId()))
-	tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/simple")
-
-	terraformOptions := &terraform.Options{
-		TerraformDir: tempTestFolder,
-		Vars: map[string]interface{}{
-			"trail_name":                testName,
-			"cloudwatch_log_group_name": testName,
-			"logs_bucket":               testName,
-			"region":                    awsRegion,
-			"s3_key_prefix":             "testName",
-			"encrypt_cloudtrail":        false,
-		},
-		EnvVars: map[string]string{
-			"AWS_DEFAULT_REGION": awsRegion,
-		},
-	}
-
-	defer terraform.Destroy(t, terraformOptions)
-	terraform.InitAndApply(t, terraformOptions)
-
-	cloudtrailArn := terraform.Output(t, terraformOptions, "cloudtrail_arn")
-	isLogging, err := IsLogging(t, awsRegion, cloudtrailArn)
-	assert.NoError(t, err)
-	assert.True(t, isLogging)
-
-}
-
 func TestTerraformAwsCloudtrailEncryption(t *testing.T) {
 	testName := fmt.Sprintf("terratest-aws-cloudtrail-%s", strings.ToLower(random.UniqueId()))
 	tempTestFolder := test_structure.CopyTerraformFolderToTemp(t, "../", "examples/simple")
@@ -81,7 +52,6 @@ func TestTerraformAwsCloudtrailEncryption(t *testing.T) {
 			"logs_bucket":               testName,
 			"region":                    awsRegion,
 			"s3_key_prefix":             "testName",
-			"encrypt_cloudtrail":        true,
 		},
 		EnvVars: map[string]string{
 			"AWS_DEFAULT_REGION": awsRegion,
