@@ -22,18 +22,11 @@ module "aws_cloudtrail" {
 ## Upgrade Instructions for v2 -> v3
 
 Starting in v3, encryption is not optional and will be on for both logs
-delivered to S3 and Cloudwatch Logs. However, because of this change, the
-KMS key resource changes in Terraform, which means you *must* move this
-resource before upgrading if you had encryption on before, or else your
-previous KMS key will be *deleted*. In order to fix this, you need to move
-the resource using a command like so:
+delivered to S3 and Cloudwatch Logs. The KMS key resource created this
+module will be used to encrypt both S3 and Cloudwatch-based logs.
 
-```console
-$ terraform state mv module.my_cloudtrail.aws_kms_key.cloudtrail[0] module.my_cloudtrail.aws_key_key.cloudtrail
-```
-
-You will also need to remove the `encrypt_cloudtrail` parameter from your
-module invocation.
+Because of this change, remove the `encrypt_cloudtrail` parameter from
+previous invocations of the module prior to upgrading the version.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
