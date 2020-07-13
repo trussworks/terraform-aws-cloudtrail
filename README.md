@@ -32,6 +32,9 @@ the resource using a command like so:
 $ terraform state mv module.my_cloudtrail.aws_kms_key.cloudtrail[0] module.my_cloudtrail.aws_key_key.cloudtrail
 ```
 
+You will also need to remove the `encrypt_cloudtrail` parameter from your
+module invocation.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
