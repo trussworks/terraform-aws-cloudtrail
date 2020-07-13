@@ -38,7 +38,7 @@ resource "aws_iam_role" "cloudtrail_cloudwatch_role" {
 resource "aws_cloudwatch_log_group" "cloudtrail" {
   name              = var.cloudwatch_log_group_name
   retention_in_days = var.log_retention_days
-  kms_key_id        = var.encrypt_cloudtrail ? aws_kms_key.cloudtrail[0].arn : null
+  kms_key_id        = aws_kms_key.cloudtrail.arn
 
   tags = {
     Automation = "Terraform"
@@ -230,8 +230,6 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
 }
 
 resource "aws_kms_key" "cloudtrail" {
-  count = var.encrypt_cloudtrail ? 1 : 0
-
   description             = "A KMS key used to encrypt CloudTrail log files stored in S3."
   deletion_window_in_days = var.key_deletion_window_in_days
   enable_key_rotation     = "true"
@@ -243,10 +241,8 @@ resource "aws_kms_key" "cloudtrail" {
 }
 
 resource "aws_kms_alias" "cloudtrail" {
-  count = var.encrypt_cloudtrail ? 1 : 0
-
   name          = "alias/${var.trail_name}"
-  target_key_id = aws_kms_key.cloudtrail[0].key_id
+  target_key_id = aws_kms_key.cloudtrail.key_id
 }
 
 #
@@ -274,7 +270,7 @@ resource "aws_cloudtrail" "main" {
   # enable log file validation to detect tampering
   enable_log_file_validation = true
 
-  kms_key_id = var.encrypt_cloudtrail ? aws_kms_key.cloudtrail[0].arn : null
+  kms_key_id = aws_kms_key.cloudtrail.arn
 
   # Enables logging for the trail. Defaults to true. Setting this to false will pause logging.
   enable_logging = var.enabled
