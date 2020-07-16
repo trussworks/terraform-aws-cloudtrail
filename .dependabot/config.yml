@@ -1,4 +1,4 @@
-version: 1
+version: 2
 update_configs:
   # Keep go modules up to date, batching pull requests weekly
   - package_manager: "go:modules"
