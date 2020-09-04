@@ -253,7 +253,7 @@ resource "aws_cloudtrail" "main" {
   name = var.trail_name
 
   # Send logs to CloudWatch Logs
-  cloud_watch_logs_group_arn = aws_cloudwatch_log_group.cloudtrail.arn
+  cloud_watch_logs_group_arn = "${aws_cloudwatch_log_group.cloudtrail.arn}:*"
   cloud_watch_logs_role_arn  = aws_iam_role.cloudtrail_cloudwatch_role.arn
 
   # Send logs to S3
