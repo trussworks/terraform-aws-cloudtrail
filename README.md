@@ -34,13 +34,13 @@ previous invocations of the module prior to upgrading the version.
 | Name | Version |
 |------|---------|
 | terraform | ~> 0.12.0 |
-| aws | ~> 2.70 |
+| aws | >= 2.70, < 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2.70 |
+| aws | >= 2.70, < 4.0 |
 
 ## Inputs
 
