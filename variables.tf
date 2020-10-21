@@ -39,6 +39,12 @@ variable "trail_name" {
   type        = string
 }
 
+variable "role_name" {
+  description = "Name for the Cloudtrail Role"
+  default     = "cloudtrail-cloudwatch-logs-role"
+  type        = string
+}
+
 variable "s3_key_prefix" {
   description = "S3 key prefix for CloudTrail logs"
   default     = "cloudtrail"
