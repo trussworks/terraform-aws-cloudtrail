@@ -39,8 +39,8 @@ variable "trail_name" {
   type        = string
 }
 
-variable "role_name" {
-  description = "Name for the Cloudtrail Role"
+variable "iam_role_name" {
+  description = "Name for the CloudTrail IAM role"
   default     = "cloudtrail-cloudwatch-logs-role"
   type        = string
 }

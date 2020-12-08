@@ -48,6 +48,7 @@ previous invocations of the module prior to upgrading the version.
 |------|-------------|------|---------|:--------:|
 | cloudwatch\_log\_group\_name | The name of the CloudWatch Log Group that receives CloudTrail events. | `string` | `"cloudtrail-events"` | no |
 | enabled | Enables logging for the trail. Defaults to true. Setting this to false will pause logging. | `bool` | `true` | no |
+| iam\_role\_name | Name for the CloudTrail IAM role | `string` | `"cloudtrail-cloudwatch-logs-role"` | no |
 | key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be 7-30 days.  Default 30 days. | `string` | `30` | no |
 | log\_retention\_days | Number of days to keep AWS logs around in specific log group. | `string` | `90` | no |
 | org\_trail | Whether or not this is an organization trail. Only valid in master account. | `string` | `"false"` | no |
