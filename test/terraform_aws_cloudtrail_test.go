@@ -50,7 +50,6 @@ func TestTerraformAwsCloudtrailEncryption(t *testing.T) {
 			"trail_name":                testName,
 			"cloudwatch_log_group_name": testName,
 			"logs_bucket":               testName,
-			"region":                    awsRegion,
 			"s3_key_prefix":             "testName",
 		},
 		EnvVars: map[string]string{
