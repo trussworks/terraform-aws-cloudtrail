@@ -11,10 +11,9 @@ module "aws_cloudtrail" {
 
 module "logs" {
   source  = "trussworks/logs/aws"
-  version = "~> 9.0.0"
+  version = "~> 10"
 
   s3_bucket_name = var.logs_bucket
-  region         = var.region
 
   cloudtrail_logs_prefix = var.s3_key_prefix
   allow_cloudtrail       = true

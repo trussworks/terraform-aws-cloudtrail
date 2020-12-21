@@ -2,10 +2,6 @@ variable "logs_bucket" {
   type = string
 }
 
-variable "region" {
-  type = string
-}
-
 variable "s3_key_prefix" {
   type = string
 }
