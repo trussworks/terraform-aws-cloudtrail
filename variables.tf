@@ -50,3 +50,9 @@ variable "s3_key_prefix" {
   default     = "cloudtrail"
   type        = string
 }
+
+variable "tags" {
+  description = "A mapping of tags to assign to the bucket."
+  default     = {}
+  type        = map(string)
+}

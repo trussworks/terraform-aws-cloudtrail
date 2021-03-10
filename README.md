@@ -42,6 +42,26 @@ previous invocations of the module prior to upgrading the version.
 |------|---------|
 | aws | >= 3.0 |
 
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) |
+| [aws_cloudtrail](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail) |
+| [aws_cloudwatch_log_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) |
+| [aws_iam_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) |
+| [aws_iam_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) |
+| [aws_kms_alias](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_alias) |
+| [aws_kms_key](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/kms_key) |
+| [aws_partition](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) |
+| [aws_region](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -54,6 +74,7 @@ previous invocations of the module prior to upgrading the version.
 | org\_trail | Whether or not this is an organization trail. Only valid in master account. | `string` | `"false"` | no |
 | s3\_bucket\_name | The name of the AWS S3 bucket. | `string` | n/a | yes |
 | s3\_key\_prefix | S3 key prefix for CloudTrail logs | `string` | `"cloudtrail"` | no |
+| tags | A mapping of tags to assign to the bucket. | `map(string)` | `{}` | no |
 | trail\_name | Name for the Cloudtrail | `string` | `"cloudtrail"` | no |
 
 ## Outputs
@@ -63,7 +84,6 @@ previous invocations of the module prior to upgrading the version.
 | cloudtrail\_arn | CloudTrail ARN |
 | cloudtrail\_home\_region | CloudTrail Home Region |
 | cloudtrail\_id | CloudTrail ID |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Developer Setup
