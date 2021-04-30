@@ -53,6 +53,6 @@ variable "s3_key_prefix" {
 
 variable "tags" {
   description = "A mapping of tags to assign to the bucket."
-  default     = {}
+  default     = { Automation = "Terraform" }
   type        = map(string)
 }
