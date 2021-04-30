@@ -52,7 +52,7 @@ variable "s3_key_prefix" {
 }
 
 variable "tags" {
-  description = "A mapping of tags to assign to the bucket."
+  description = "A mapping of tags to CloudTrail resources."
   default     = { Automation = "Terraform" }
   type        = map(string)
 }
