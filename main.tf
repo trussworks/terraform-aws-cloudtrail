@@ -193,7 +193,7 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     condition {
       test     = "StringEquals"
       variable = "kms:CallerAccount"
-      values   = [data.aws_caller_identity.current.account_id]
+      values   = compact(concat([data.aws_caller_identity.current.account_id], var.key_allowed_extra_accounts))
     }
 
     condition {
