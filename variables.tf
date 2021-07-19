@@ -33,6 +33,12 @@ variable "key_deletion_window_in_days" {
   type        = string
 }
 
+variable "key_allowed_extra_accounts" {
+  description = "extra accounts with decrypt access (to allow browsing and download when using a bucket in a different account then cloudtrail)"
+  default     = [""]
+  type        = list(string)
+}
+
 variable "trail_name" {
   description = "Name for the Cloudtrail"
   default     = "cloudtrail"
