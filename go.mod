@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/agext/levenshtein v1.2.2 // indirect
-	github.com/aws/aws-sdk-go v1.40.13
+	github.com/aws/aws-sdk-go v1.40.17
 	github.com/gruntwork-io/terratest v0.37.2
 	github.com/imdario/mergo v0.3.11 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
