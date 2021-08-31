@@ -56,3 +56,7 @@ variable "tags" {
   default     = { Automation = "Terraform" }
   type        = map(string)
 }
+variable "custom_kms_key_access" {
+  description = "Map of statements allowing additional KMS access to be specified.  This can include allowing custom access for external accounts and resources to decrypt the kms keys"
+  default = []
+}

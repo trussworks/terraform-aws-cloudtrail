@@ -19,6 +19,24 @@ module "aws_cloudtrail" {
 }
 ```
 
+This generates a KMS key for enccryption of the cloudtrail logs.  KMS permissions can be appended to by use of the custom_kms_key_access
+```hcl
+  custom_kms_key_access = [
+    {
+      sid = "AllowSomeOtherDecryption"
+      effect = "Allow"
+      principals = [ 
+        {
+          type = "AWS"
+          identifiers = [ "12345678901"]
+        } 
+      ]
+      actions = [ "kms:Decrypt*", ]
+    }
+  ]
+```
+to grant additional permissions on the KMS key for external log parsers or similar.
+
 ## Upgrade Instructions for v2 -> v3
 
 Starting in v3, encryption is not optional and will be on for both logs

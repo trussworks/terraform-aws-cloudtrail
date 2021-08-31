@@ -75,6 +75,7 @@ resource "aws_iam_policy_attachment" "main" {
 # This policy is a translation of the default created by AWS when you
 # manually enable CloudTrail; you can see it here:
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/default-cmk-policy.html
+
 data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
   statement {
     sid     = "Enable IAM User Permissions"
@@ -224,6 +225,26 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     resources = ["*"]
   }
 
+  dynamic "statement" {
+
+    for_each = var.custom_kms_key_access
+    content {
+      sid = lookup(statement.value, "sid", statement.key)
+      ## Default to Deny unless set to Allow
+      effect = lookup(statement.value, "effect", "Deny")
+      dynamic "principals" {
+        for_each = lookup(statement.value, "principals", null)
+        content {
+          ## Default to an "AWS" type... should be set though!
+          type = lookup(principals.value, "type", "AWS")
+          ## Default to "none" for access
+          identifiers = lookup(principals.value, "identifiers", [])
+        }
+      }
+      actions = lookup(statement.value, "actions", [])
+      resources = lookup(statement.value, "resources", ["*"])
+    }
+  }
 }
 
 resource "aws_kms_key" "cloudtrail" {
