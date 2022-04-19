@@ -58,12 +58,12 @@ data "aws_iam_policy_document" "cloudtrail_cloudwatch_logs" {
 }
 
 resource "aws_iam_policy" "cloudtrail_cloudwatch_logs" {
-  name   = "cloudtrail-cloudwatch-logs-policy"
+  name   = var.iam_policy_name
   policy = data.aws_iam_policy_document.cloudtrail_cloudwatch_logs.json
 }
 
 resource "aws_iam_policy_attachment" "main" {
-  name       = "cloudtrail-cloudwatch-logs-policy-attachment"
+  name       = "${var.iam_policy_name}-attachment"
   policy_arn = aws_iam_policy.cloudtrail_cloudwatch_logs.arn
   roles      = [aws_iam_role.cloudtrail_cloudwatch_role.name]
 }
