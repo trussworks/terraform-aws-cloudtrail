@@ -3,7 +3,7 @@ module github.com/trussworks/terraform-aws-cloudtrail
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go v1.44.133
+	github.com/aws/aws-sdk-go v1.44.138
 	github.com/gruntwork-io/terratest v0.40.24
 	github.com/stretchr/testify v1.8.1
 )
