@@ -12,4 +12,3 @@ output "cloudtrail_id" {
   description = "CloudTrail ID"
   value       = aws_cloudtrail.main.id
 }
-
