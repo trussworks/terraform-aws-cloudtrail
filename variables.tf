@@ -59,8 +59,8 @@ variable "s3_key_prefix" {
 
 variable "sns_topic_name" {
   description = "Name of the SNS topic for notification of log file delivery."
-  default = ""
-  type = string
+  default     = ""
+  type        = string
 }
 
 variable "tags" {
