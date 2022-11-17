@@ -1,4 +1,3 @@
-
 # Terraform AWS CloudTrail
 
 This module creates AWS CloudTrail and configures it so that logs go to cloudwatch.
@@ -33,14 +32,14 @@ previous invocations of the module prior to upgrading the version.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0 |
+| terraform | >= 0.13.0 |
+| aws | >= 3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.0 |
+| aws | >= 3.0 |
 
 ## Modules
 
@@ -80,14 +79,13 @@ No modules.
 | <a name="input_sns_topic_name"></a> [sns\_topic\_name](#input\_sns\_topic\_name) | Name of the SNS topic for notification of log file delivery. | `string` | `""` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to CloudTrail resources. | `map(string)` | <pre>{<br>  "Automation": "Terraform"<br>}</pre> | no |
 | <a name="input_trail_name"></a> [trail\_name](#input\_trail\_name) | Name for the Cloudtrail | `string` | `"cloudtrail"` | no |
-
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_cloudtrail_arn"></a> [cloudtrail\_arn](#output\_cloudtrail\_arn) | CloudTrail ARN |
-| <a name="output_cloudtrail_home_region"></a> [cloudtrail\_home\_region](#output\_cloudtrail\_home\_region) | CloudTrail Home Region |
-| <a name="output_cloudtrail_id"></a> [cloudtrail\_id](#output\_cloudtrail\_id) | CloudTrail ID |
+| cloudtrail\_arn | CloudTrail ARN |
+| cloudtrail\_home\_region | CloudTrail Home Region |
+| cloudtrail\_id | CloudTrail ID |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Developer Setup
@@ -96,20 +94,4 @@ Install dependencies (macOS)
 
 ```shell
 brew install pre-commit go terraform terraform-docs
-```
-
-### Testing
-
-[Terratest](https://github.com/gruntwork-io/terratest) is being used for
-automated testing with this module. Tests in the `test` folder can be run
-locally by running the following command:
-
-```text
-make test
-```
-
-Or with aws-vault:
-
-```text
-AWS_VAULT_KEYCHAIN_NAME=<NAME> aws-vault exec <PROFILE> -- make test
 ```
