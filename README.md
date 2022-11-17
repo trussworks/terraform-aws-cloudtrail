@@ -67,18 +67,19 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cloudwatch_log_group_name"></a> [cloudwatch\_log\_group\_name](#input\_cloudwatch\_log\_group\_name) | The name of the CloudWatch Log Group that receives CloudTrail events. | `string` | `"cloudtrail-events"` | no |
-| <a name="input_enabled"></a> [enabled](#input\_enabled) | Enables logging for the trail. Defaults to true. Setting this to false will pause logging. | `bool` | `true` | no |
-| <a name="input_iam_policy_name"></a> [iam\_policy\_name](#input\_iam\_policy\_name) | Name for the CloudTrail IAM policy | `string` | `"cloudtrail-cloudwatch-logs-policy"` | no |
-| <a name="input_iam_role_name"></a> [iam\_role\_name](#input\_iam\_role\_name) | Name for the CloudTrail IAM role | `string` | `"cloudtrail-cloudwatch-logs-role"` | no |
-| <a name="input_key_deletion_window_in_days"></a> [key\_deletion\_window\_in\_days](#input\_key\_deletion\_window\_in\_days) | Duration in days after which the key is deleted after destruction of the resource, must be 7-30 days.  Default 30 days. | `string` | `30` | no |
-| <a name="input_log_retention_days"></a> [log\_retention\_days](#input\_log\_retention\_days) | Number of days to keep AWS logs around in specific log group. | `string` | `90` | no |
-| <a name="input_org_trail"></a> [org\_trail](#input\_org\_trail) | Whether or not this is an organization trail. Only valid in master account. | `string` | `"false"` | no |
-| <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | The name of the AWS S3 bucket. | `string` | n/a | yes |
-| <a name="input_s3_key_prefix"></a> [s3\_key\_prefix](#input\_s3\_key\_prefix) | S3 key prefix for CloudTrail logs | `string` | `"cloudtrail"` | no |
-| <a name="input_sns_topic_name"></a> [sns\_topic\_name](#input\_sns\_topic\_name) | Name of the SNS topic for notification of log file delivery. | `string` | `""` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to CloudTrail resources. | `map(string)` | <pre>{<br>  "Automation": "Terraform"<br>}</pre> | no |
-| <a name="input_trail_name"></a> [trail\_name](#input\_trail\_name) | Name for the Cloudtrail | `string` | `"cloudtrail"` | no |
+| cloudwatch\_log\_group\_name | The name of the CloudWatch Log Group that receives CloudTrail events. | `string` | `"cloudtrail-events"` | no |
+| enabled | Enables logging for the trail. Defaults to true. Setting this to false will pause logging. | `bool` | `true` | no |
+| iam\_policy\_name | Name for the CloudTrail IAM policy | `string` | `"cloudtrail-cloudwatch-logs-policy"` | no |
+| iam\_role\_name | Name for the CloudTrail IAM role | `string` | `"cloudtrail-cloudwatch-logs-role"` | no |
+| key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be 7-30 days.  Default 30 days. | `string` | `30` | no |
+| log\_retention\_days | Number of days to keep AWS logs around in specific log group. | `string` | `90` | no |
+| org\_trail | Whether or not this is an organization trail. Only valid in master account. | `string` | `"false"` | no |
+| s3\_bucket\_name | The name of the AWS S3 bucket. | `string` | n/a | yes |
+| s3\_key\_prefix | S3 key prefix for CloudTrail logs | `string` | `"cloudtrail"` | no |
+| sns\_topic\_name | Name of the SNS topic for notification of log file delivery. | `string` | `""` | no |
+| tags | A mapping of tags to CloudTrail resources. | `map(string)` | ```{ "Automation": "Terraform" }``` | no |
+| trail\_name | Name for the Cloudtrail | `string` | `"cloudtrail"` | no |
+
 ## Outputs
 
 | Name | Description |
