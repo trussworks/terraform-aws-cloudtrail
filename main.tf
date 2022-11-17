@@ -269,6 +269,9 @@ resource "aws_cloudtrail" "main" {
   # Enables logging for the trail. Defaults to true. Setting this to false will pause logging.
   enable_logging = var.enabled
 
+  # Enables SNS log notification
+  sns_topic_name = var.sns_topic_name
+
   tags = var.tags
 
 

@@ -57,6 +57,12 @@ variable "s3_key_prefix" {
   type        = string
 }
 
+variable "sns_topic_name" {
+  description = "Name of the SNS topic for notification of log file delivery."
+  default = ""
+  type = string
+}
+
 variable "tags" {
   description = "A mapping of tags to CloudTrail resources."
   default     = { Automation = "Terraform" }
