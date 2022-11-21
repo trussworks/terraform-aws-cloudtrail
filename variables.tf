@@ -56,9 +56,8 @@ variable "s3_key_prefix" {
   default     = "cloudtrail"
   type        = string
 }
-
-variable "sns_topic_name" {
-  description = "Name of the SNS topic for notification of log file delivery."
+variable "sns_topic_arn" {
+  description = "ARN of the SNS topic for notification of log file delivery. (Required if SNS topic set)"
   default     = ""
   type        = string
 }
