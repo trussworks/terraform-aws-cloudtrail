@@ -57,7 +57,7 @@ variable "s3_key_prefix" {
   type        = string
 }
 variable "sns_topic_arn" {
-  description = "ARN of the SNS topic for notification of log file delivery. (Required if SNS topic set)"
+  description = "ARN of the SNS topic for notification of log file delivery."
   default     = ""
   type        = string
 }
