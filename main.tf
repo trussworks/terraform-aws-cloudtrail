@@ -224,6 +224,23 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     resources = ["*"]
   }
 
+
+  statement {
+    sid    = "Allow Cloudtrail to decrypt and generate key for sns access"
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["cloudtrail.amazonaws.com"]
+    }
+
+    actions = [
+      "kms:Decrypt*",
+      "kms:GenerateDataKey*",
+    ]
+    resources = ["*"]
+  }
+
 }
 
 resource "aws_kms_key" "cloudtrail" {
@@ -268,6 +285,9 @@ resource "aws_cloudtrail" "main" {
 
   # Enables logging for the trail. Defaults to true. Setting this to false will pause logging.
   enable_logging = var.enabled
+
+  # Enables SNS log notification
+  sns_topic_name = var.sns_topic_arn
 
   tags = var.tags
 
