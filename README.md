@@ -79,6 +79,7 @@ No modules.
 | sns\_topic\_arn | ARN of the SNS topic for notification of log file delivery. | `string` | `""` | no |
 | tags | A mapping of tags to CloudTrail resources. | `map(string)` | ```{ "Automation": "Terraform" }``` | no |
 | trail\_name | Name for the Cloudtrail | `string` | `"cloudtrail"` | no |
+| vpc\_endpoint | The VPC endpoint ID for KMS related resources | `string` | `""` | no |
 
 ## Outputs
 

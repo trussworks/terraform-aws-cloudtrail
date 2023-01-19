@@ -75,6 +75,7 @@ resource "aws_iam_policy_attachment" "main" {
 # This policy is a translation of the default created by AWS when you
 # manually enable CloudTrail; you can see it here:
 # https://docs.aws.amazon.com/awscloudtrail/latest/userguide/default-cmk-policy.html
+
 data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
   statement {
     sid     = "Enable IAM User Permissions"
@@ -241,8 +242,49 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     resources = ["*"]
   }
 
-}
+  statement {
+    sid    = "Allow Cloudtrail to decrypt and generate key for sqs access"
+    effect = "Allow"
 
+    principals {
+      type = "Service"
+      identifiers = [
+        "sqs.amazonaws.com"
+      ]
+    }
+
+    actions = [
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Encrypt*",
+      "kms:Describe*",
+      "kms:Decrypt*",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    sid    = "allow vpc-endpoint"
+    effect = "Allow"
+    actions = [
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Encrypt*",
+      "kms:Describe*",
+      "kms:Decrypt*",
+    ]
+    resources = ["*"]
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "aws:sourceVpce"
+      values   = [var.vpc_endpoint]
+    }
+  }
+}
 resource "aws_kms_key" "cloudtrail" {
   description             = "A KMS key used to encrypt CloudTrail log files stored in S3."
   deletion_window_in_days = var.key_deletion_window_in_days

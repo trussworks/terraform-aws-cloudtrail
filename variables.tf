@@ -67,3 +67,9 @@ variable "tags" {
   default     = { Automation = "Terraform" }
   type        = map(string)
 }
+
+variable "vpc_endpoint" {
+  description = "The VPC endpoint ID for KMS related resources"
+  default     = ""
+  type        = string
+}
