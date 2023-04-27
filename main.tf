@@ -224,32 +224,15 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     ]
     resources = ["*"]
   }
-
-
   statement {
-    sid    = "Allow Cloudtrail to decrypt and generate key for sns access"
-    effect = "Allow"
-
-    principals {
-      type        = "Service"
-      identifiers = ["cloudtrail.amazonaws.com"]
-    }
-
-    actions = [
-      "kms:Decrypt*",
-      "kms:GenerateDataKey*",
-    ]
-    resources = ["*"]
-  }
-
-  statement {
-    sid    = "Allow Cloudtrail to decrypt and generate key for sqs access"
+    sid    = "Allow Cloudtrail to decrypt and generate key for sqs and sns access"
     effect = "Allow"
 
     principals {
       type = "Service"
       identifiers = [
-        "sqs.amazonaws.com"
+        "sqs.amazonaws.com",
+        "sns.amazonaws.com"
       ]
     }
 
