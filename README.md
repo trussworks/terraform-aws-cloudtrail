@@ -27,7 +27,7 @@ module will be used to encrypt both S3 and Cloudwatch-based logs.
 Because of this change, remove the `encrypt_cloudtrail` parameter from
 previous invocations of the module prior to upgrading the version.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -88,7 +88,7 @@ No modules.
 | cloudtrail\_arn | CloudTrail ARN |
 | cloudtrail\_home\_region | CloudTrail Home Region |
 | cloudtrail\_id | CloudTrail ID |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 ## Developer Setup
 
