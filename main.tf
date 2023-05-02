@@ -225,13 +225,12 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     resources = ["*"]
   }
   statement {
-    sid    = "Allow Cloudtrail to decrypt and generate key for sqs and sns access"
+    sid    = "Allow Cloudtrail to decrypt and generate key for sns access"
     effect = "Allow"
 
     principals {
       type = "Service"
       identifiers = [
-        "sqs.amazonaws.com",
         "sns.amazonaws.com"
       ]
     }
@@ -240,6 +239,46 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
       "kms:ReEncrypt*",
       "kms:GenerateDataKey*",
       "kms:Encrypt*",
+      "kms:Describe*",
+      "kms:Decrypt*",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    sid    = "Allow Cloudtrail to decrypt and generate key for sqs"
+    effect = "Allow"
+
+    principals {
+      type = "Service"
+      identifiers = [
+        "sqs.amazonaws.com",
+      ]
+    }
+
+    actions = [
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Encrypt*",
+      "kms:Describe*",
+      "kms:Decrypt*",
+    ]
+    resources = ["*"]
+  }
+
+  statement {
+    sid    = "Allow Cloudtrail to decrypt and generate key for posting to sns"
+    effect = "Allow"
+
+    principals {
+      type = "Service"
+      identifiers = [
+        "cloudtrail.amazonaws.com",
+      ]
+    }
+
+    actions = [
+      "kms:GenerateDataKey*",
       "kms:Describe*",
       "kms:Decrypt*",
     ]
