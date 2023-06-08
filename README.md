@@ -26,7 +26,7 @@ previous invocations of the module prior to upgrading the version.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.13.0 |
+| terraform | >= 1.0 |
 | aws | >= 3.0 |
 
 ## Providers
