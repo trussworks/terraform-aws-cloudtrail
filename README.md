@@ -2,12 +2,6 @@
 
 This module creates AWS CloudTrail and configures it so that logs go to cloudwatch.
 
-## Terraform Versions
-
-Terraform 0.13 and newer. Pin module version to `~> 4.X`. Submit pull-requests to `master` branch.
-
-Terraform 0.12. Pin module version to `~> 3.X`. Submit pull-requests to `terraform12` branch.
-
 ## Usage
 
 ```hcl
