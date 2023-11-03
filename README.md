@@ -71,7 +71,7 @@ No modules.
 | s3\_bucket\_name | The name of the AWS S3 bucket. | `string` | n/a | yes |
 | s3\_key\_prefix | S3 key prefix for CloudTrail logs | `string` | `"cloudtrail"` | no |
 | sns\_topic\_arn | ARN of the SNS topic for notification of log file delivery. | `string` | `""` | no |
-| tags | A mapping of tags to CloudTrail resources. | `map(string)` | ```{ "Automation": "Terraform" }``` | no |
+| tags | A mapping of tags to CloudTrail resources. | `map(string)` | `{}` | no |
 | trail\_name | Name for the Cloudtrail | `string` | `"cloudtrail"` | no |
 
 ## Outputs

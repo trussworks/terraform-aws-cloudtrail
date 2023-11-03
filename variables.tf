@@ -64,6 +64,6 @@ variable "sns_topic_arn" {
 
 variable "tags" {
   description = "A mapping of tags to CloudTrail resources."
-  default     = { Automation = "Terraform" }
+  default     = {}
   type        = map(string)
 }
