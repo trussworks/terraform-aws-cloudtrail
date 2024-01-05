@@ -1,10 +1,8 @@
 # The AWS region currently being used.
-data "aws_region" "current" {
-}
+data "aws_region" "current" {}
 
 # The AWS account id
-data "aws_caller_identity" "current" {
-}
+data "aws_caller_identity" "current" {}
 
 # The AWS partition (commercial or govcloud)
 data "aws_partition" "current" {}
@@ -219,11 +217,10 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
       "kms:Decrypt*",
       "kms:ReEncrypt*",
       "kms:GenerateDataKey*",
-      "kms:Describe*"
+      "kms:Describe*",
     ]
     resources = ["*"]
   }
-
 
   statement {
     sid    = "Allow Cloudtrail to decrypt and generate key for sns access"
@@ -240,7 +237,6 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     ]
     resources = ["*"]
   }
-
 }
 
 resource "aws_kms_key" "cloudtrail" {
@@ -289,8 +285,18 @@ resource "aws_cloudtrail" "main" {
   # Enables SNS log notification
   sns_topic_name = var.sns_topic_arn
 
-  tags = var.tags
+  # Enable Insights
+  dynamic "insight_selector" {
+    for_each = compact([
+      var.api_call_rate_insight ? "ApiCallRateInsight" : null,
+      var.api_error_rate_insight ? "ApiErrorRateInsight" : null,
+    ])
+    content {
+      insight_type = insight_selector.value
+    }
+  }
 
+  tags = var.tags
 
   depends_on = [
     aws_kms_key.cloudtrail,

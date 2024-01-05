@@ -56,6 +56,7 @@ variable "s3_key_prefix" {
   default     = "cloudtrail"
   type        = string
 }
+
 variable "sns_topic_arn" {
   description = "ARN of the SNS topic for notification of log file delivery."
   default     = ""
@@ -66,4 +67,16 @@ variable "tags" {
   description = "A mapping of tags to CloudTrail resources."
   default     = {}
   type        = map(string)
+}
+
+variable "api_call_rate_insight" {
+  description = "A measurement of write-only management API calls that occur per minute against a baseline API call volume."
+  default     = false
+  type        = bool
+}
+
+variable "api_error_rate_insight" {
+  description = "A measurement of management API calls that result in error codes. The error is shown if the API call is unsuccessful."
+  default     = false
+  type        = bool
 }
