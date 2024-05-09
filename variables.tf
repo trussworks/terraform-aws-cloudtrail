@@ -80,3 +80,20 @@ variable "api_error_rate_insight" {
   default     = false
   type        = bool
 }
+
+variable "advanced_event_selectors" {
+  description = "A list of advanced event selectors for the trail."
+  default     = []
+  type = list(object({
+    name = string
+    field_selectors = list(object({
+      field           = string
+      equals          = optional(list(string))
+      starts_with     = optional(list(string))
+      ends_with       = optional(list(string))
+      not_equals      = optional(list(string))
+      not_starts_with = optional(list(string))
+      not_ends_with   = optional(list(string))
+    }))
+  }))
+}
