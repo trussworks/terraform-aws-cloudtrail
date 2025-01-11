@@ -22,6 +22,10 @@ sections:
     - inputs
     - outputs
 
+recursive:
+  enabled: false
+  include-main: false
+
 output:
   file: README.md
   mode: inject
