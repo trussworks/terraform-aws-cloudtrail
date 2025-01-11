@@ -29,8 +29,3 @@ repos:
           - --args=--config=.terraform-docs.yml
           - --hook-config=--add-to-existing-file=false
           - --hook-config=--create-file-if-not-exist=false
-        files: ^.*\.tf$
-        exclude: |
-          (?x)^(
-            LICENSE
-          )$
