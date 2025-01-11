@@ -24,9 +24,5 @@ repos:
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
-        verbose: true
         args:
           - --args=--config=.terraform-docs.yml
-          - --hook-config=--add-to-existing-file=false
-          - --hook-config=--create-file-if-not-exist=false
-          - --args=--output-mode=inject
