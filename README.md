@@ -57,6 +57,7 @@ previous invocations of the module prior to upgrading the version.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| s3_bucket_name | The name of the AWS S3 bucket. | `string` | n/a | yes |
 | api_call_rate_insight | A measurement of write-only management API calls that occur per minute against a baseline API call volume. | `bool` | `false` | no |
 | api_error_rate_insight | A measurement of management API calls that result in error codes. The error is shown if the API call is unsuccessful. | `bool` | `false` | no |
 | cloudwatch_log_group_name | The name of the CloudWatch Log Group that receives CloudTrail events. | `string` | `"cloudtrail-events"` | no |
@@ -66,7 +67,6 @@ previous invocations of the module prior to upgrading the version.
 | key_deletion_window_in_days | Duration in days after which the key is deleted after destruction of the resource, must be 7-30 days.  Default 30 days. | `string` | `30` | no |
 | log_retention_days | Number of days to keep AWS logs around in specific log group. | `string` | `90` | no |
 | org_trail | Whether or not this is an organization trail. Only valid in master account. | `string` | `"false"` | no |
-| s3_bucket_name | The name of the AWS S3 bucket. | `string` | n/a | yes |
 | s3_key_prefix | S3 key prefix for CloudTrail logs | `string` | `"cloudtrail"` | no |
 | sns_topic_arn | ARN of the SNS topic for notification of log file delivery. | `string` | `""` | no |
 | tags | A mapping of tags to CloudTrail resources. | `map(string)` | `{}` | no |
