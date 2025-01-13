@@ -58,6 +58,7 @@ previous invocations of the module prior to upgrading the version.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | s3_bucket_name | The name of the AWS S3 bucket. | `string` | n/a | yes |
+| advanced_event_selectors | A list of advanced event selectors for the trail. | ```list(object({ name = string field_selectors = list(object({ field = string equals = optional(list(string)) starts_with = optional(list(string)) ends_with = optional(list(string)) not_equals = optional(list(string)) not_starts_with = optional(list(string)) not_ends_with = optional(list(string)) })) }))``` | `[]` | no |
 | api_call_rate_insight | A measurement of write-only management API calls that occur per minute against a baseline API call volume. | `bool` | `false` | no |
 | api_error_rate_insight | A measurement of management API calls that result in error codes. The error is shown if the API call is unsuccessful. | `bool` | `false` | no |
 | cloudwatch_log_group_name | The name of the CloudWatch Log Group that receives CloudTrail events. | `string` | `"cloudtrail-events"` | no |
