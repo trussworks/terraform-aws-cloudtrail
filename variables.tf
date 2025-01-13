@@ -21,6 +21,12 @@ variable "s3_bucket_name" {
   type        = string
 }
 
+variable "s3_bucket_account_id" {
+  description = "(optional) The AWS account ID which owns the S3 bucket. Only include if the S3 bucket is in a different account than the CloudTrail."
+  default     = null
+  type        = string
+}
+
 variable "org_trail" {
   description = "Whether or not this is an organization trail. Only valid in master account."
   default     = "false"

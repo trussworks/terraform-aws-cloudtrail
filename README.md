@@ -67,6 +67,7 @@ previous invocations of the module prior to upgrading the version.
 | key_deletion_window_in_days | Duration in days after which the key is deleted after destruction of the resource, must be 7-30 days.  Default 30 days. | `string` | `30` | no |
 | log_retention_days | Number of days to keep AWS logs around in specific log group. | `string` | `90` | no |
 | org_trail | Whether or not this is an organization trail. Only valid in master account. | `string` | `"false"` | no |
+| s3_bucket_account_id | (optional) The AWS account ID which owns the S3 bucket. Only include if the S3 bucket is in a different account than the CloudTrail. | `string` | `null` | no |
 | s3_key_prefix | S3 key prefix for CloudTrail logs | `string` | `"cloudtrail"` | no |
 | sns_topic_arn | ARN of the SNS topic for notification of log file delivery. | `string` | `""` | no |
 | tags | A mapping of tags to CloudTrail resources. | `map(string)` | `{}` | no |
@@ -79,6 +80,7 @@ previous invocations of the module prior to upgrading the version.
 | cloudtrail_arn | CloudTrail ARN |
 | cloudtrail_home_region | CloudTrail Home Region |
 | cloudtrail_id | CloudTrail ID |
+| kms_key_arn | KMS Key ARN |
 <!-- END_TF_DOCS -->
 
 ## Developer Setup

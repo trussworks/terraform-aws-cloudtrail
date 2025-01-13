@@ -7,6 +7,10 @@ data "aws_caller_identity" "current" {}
 # The AWS partition (commercial or govcloud)
 data "aws_partition" "current" {}
 
+locals {
+  s3_bucket_account_id = var.s3_bucket_account_id != null ? var.s3_bucket_account_id : data.aws_caller_identity.current.account_id
+}
+
 #
 # CloudTrail - CloudWatch
 #
@@ -191,7 +195,7 @@ data "aws_iam_policy_document" "cloudtrail_kms_policy_doc" {
     condition {
       test     = "StringEquals"
       variable = "kms:CallerAccount"
-      values   = [data.aws_caller_identity.current.account_id]
+      values   = [local.s3_bucket_account_id]
     }
 
     condition {
