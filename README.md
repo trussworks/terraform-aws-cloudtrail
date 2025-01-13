@@ -35,10 +35,6 @@ previous invocations of the module prior to upgrading the version.
 |------|---------|
 | aws | >= 3.0 |
 
-## Modules
-
-No modules.
-
 ## Resources
 
 | Name | Type |
@@ -61,29 +57,31 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| advanced\_event\_selectors | A list of advanced event selectors for the trail. | ```list(object({ name = string field_selectors = list(object({ field = string equals = optional(list(string)) starts_with = optional(list(string)) ends_with = optional(list(string)) not_equals = optional(list(string)) not_starts_with = optional(list(string)) not_ends_with = optional(list(string)) })) }))``` | `[]` | no |
-| api\_call\_rate\_insight | A measurement of write-only management API calls that occur per minute against a baseline API call volume. | `bool` | `false` | no |
-| api\_error\_rate\_insight | A measurement of management API calls that result in error codes. The error is shown if the API call is unsuccessful. | `bool` | `false` | no |
-| cloudwatch\_log\_group\_name | The name of the CloudWatch Log Group that receives CloudTrail events. | `string` | `"cloudtrail-events"` | no |
+| s3_bucket_name | The name of the AWS S3 bucket. | `string` | n/a | yes |
+| advanced_event_selectors | A list of advanced event selectors for the trail. | ```list(object({ name = string field_selectors = list(object({ field = string equals = optional(list(string)) starts_with = optional(list(string)) ends_with = optional(list(string)) not_equals = optional(list(string)) not_starts_with = optional(list(string)) not_ends_with = optional(list(string)) })) }))``` | `[]` | no |
+| api_call_rate_insight | A measurement of write-only management API calls that occur per minute against a baseline API call volume. | `bool` | `false` | no |
+| api_error_rate_insight | A measurement of management API calls that result in error codes. The error is shown if the API call is unsuccessful. | `bool` | `false` | no |
+| cloudwatch_log_group_name | The name of the CloudWatch Log Group that receives CloudTrail events. | `string` | `"cloudtrail-events"` | no |
 | enabled | Enables logging for the trail. Defaults to true. Setting this to false will pause logging. | `bool` | `true` | no |
-| iam\_policy\_name | Name for the CloudTrail IAM policy | `string` | `"cloudtrail-cloudwatch-logs-policy"` | no |
-| iam\_role\_name | Name for the CloudTrail IAM role | `string` | `"cloudtrail-cloudwatch-logs-role"` | no |
-| key\_deletion\_window\_in\_days | Duration in days after which the key is deleted after destruction of the resource, must be 7-30 days.  Default 30 days. | `string` | `30` | no |
-| log\_retention\_days | Number of days to keep AWS logs around in specific log group. | `string` | `90` | no |
-| org\_trail | Whether or not this is an organization trail. Only valid in master account. | `string` | `"false"` | no |
-| s3\_bucket\_name | The name of the AWS S3 bucket. | `string` | n/a | yes |
-| s3\_key\_prefix | S3 key prefix for CloudTrail logs | `string` | `"cloudtrail"` | no |
-| sns\_topic\_arn | ARN of the SNS topic for notification of log file delivery. | `string` | `""` | no |
+| iam_policy_name | Name for the CloudTrail IAM policy | `string` | `"cloudtrail-cloudwatch-logs-policy"` | no |
+| iam_role_name | Name for the CloudTrail IAM role | `string` | `"cloudtrail-cloudwatch-logs-role"` | no |
+| key_deletion_window_in_days | Duration in days after which the key is deleted after destruction of the resource, must be 7-30 days.  Default 30 days. | `string` | `30` | no |
+| log_retention_days | Number of days to keep AWS logs around in specific log group. | `string` | `90` | no |
+| org_trail | Whether or not this is an organization trail. Only valid in master account. | `string` | `"false"` | no |
+| s3_bucket_account_id | (optional) The AWS account ID which owns the S3 bucket. Only include if the S3 bucket is in a different account than the CloudTrail. | `string` | `null` | no |
+| s3_key_prefix | S3 key prefix for CloudTrail logs | `string` | `"cloudtrail"` | no |
+| sns_topic_arn | ARN of the SNS topic for notification of log file delivery. | `string` | `""` | no |
 | tags | A mapping of tags to CloudTrail resources. | `map(string)` | `{}` | no |
-| trail\_name | Name for the Cloudtrail | `string` | `"cloudtrail"` | no |
+| trail_name | Name for the Cloudtrail | `string` | `"cloudtrail"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| cloudtrail\_arn | CloudTrail ARN |
-| cloudtrail\_home\_region | CloudTrail Home Region |
-| cloudtrail\_id | CloudTrail ID |
+| cloudtrail_arn | CloudTrail ARN |
+| cloudtrail_home_region | CloudTrail Home Region |
+| cloudtrail_id | CloudTrail ID |
+| kms_key_arn | KMS Key ARN |
 <!-- END_TF_DOCS -->
 
 ## Developer Setup
