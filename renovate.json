@@ -1,6 +1,7 @@
 {
   "extends": [
-    "config:recommended"
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
   ],
   "labels": [
     "dependencies"
@@ -31,10 +32,7 @@
       "groupName": "dependencies",
       "matchManagers": [
         "terraform",
-        "gomod",
         "pre-commit",
-        "circleci",
-        "dockerfile",
         "github-actions"
       ],
       "matchUpdateTypes": [
@@ -42,9 +40,6 @@
         "patch"
       ]
     }
-  ],
-  "postUpdateOptions": [
-    "gomodTidy"
   ],
   "schedule": [
     "every weekend"
